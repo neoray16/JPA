@@ -1,7 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-
+@NamedQuery(name = "select",query = "SELECT e from TestTableEntity  e")
 @Entity
 @Table(name = "test_table", schema = "public", catalog = "Test")
 public class TestTableEntity {
@@ -9,6 +9,15 @@ public class TestTableEntity {
     @Id
     @Column(name = "idcolum")
     private int idcolum;
+
+    @Override
+    public String toString() {
+        return "TestTableEntity{" +
+                "idcolum=" + idcolum +
+                ", nameTest='" + nameTest + '\'' +
+                '}';
+    }
+
     @Basic
     @Column(name = "name_test")
     private String nameTest;

@@ -3,6 +3,8 @@ package com.example.jpa;
 import entity.TestTableEntity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 //import jakarta.*;
 public class Main {
     public static void main(String[] args) {
@@ -12,10 +14,15 @@ public class Main {
         EntityTransaction transaction=entityManager.getTransaction();
         try {
             transaction.begin();
-            TestTableEntity dataEntity=new TestTableEntity();
-            dataEntity.setNameTest("add of jpa");
-            entityManager.persist(dataEntity);
-            transaction.commit();
+//            TestTableEntity dataEntity=new TestTableEntity();
+//            dataEntity.setNameTest("add of jpa");
+//            entityManager.persist(dataEntity);
+            Query q=entityManager.createNamedQuery("select");
+            List<TestTableEntity> res = q.getResultList();
+            for(TestTableEntity testTableEntity :res){
+                System.out.println(testTableEntity.toString());
+            }
+            //transaction.commit();
         }
         finally {
             if (transaction.isActive()){
