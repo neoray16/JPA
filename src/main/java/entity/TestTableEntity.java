@@ -1,6 +1,9 @@
 package entity;
 
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @NamedQuery(name = "select",query = "SELECT e from TestTableEntity  e")
 @Entity
 @Table(name = "test_table", schema = "public", catalog = "Test")
@@ -56,5 +59,12 @@ public class TestTableEntity {
         int result = idcolum;
         result = 31 * result + (nameTest != null ? nameTest.hashCode() : 0);
         return result;
+    }
+    public void update(List<TestTableEntity> l, int id,String change){
+        for (TestTableEntity e:l) {
+            if(e.getIdcolum() == id){
+                e.setNameTest(change);
+            }
+        }
     }
 }
